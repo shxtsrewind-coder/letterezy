@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://letterezy.bgameworld.com/sitemap.xml
