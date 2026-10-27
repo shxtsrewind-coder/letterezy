@@ -2,19 +2,19 @@ import React from "react";
 import { Layers, Sparkles } from "lucide-react";
 import { LETTER_SQUARE, WORD_SQUARE, SLOTS, letterValue } from "../lib/letters.ts";
 
-/** A cream letter tile with its points in the corner. */
+/** A white letter tile with its points in the corner. */
 export const LetterTile: React.FC<{ letter: string; size?: "rack" | "slot" | "chip"; className?: string }> = ({ letter, size = "rack", className = "" }) => {
   const big = size === "rack";
   return (
     <span
-      className={`relative w-full h-full flex items-center justify-center rounded-[18%] bg-gradient-to-b from-[#fbf7ee] to-[#e9e1cf] text-ink select-none ${className}`}
-      style={{ boxShadow: `inset 0 -${big ? 5 : 3}px 0 #c9bea6, 0 ${big ? 4 : 2}px 0 rgba(0,0,0,.45)` }}
+      className={`relative w-full h-full flex items-center justify-center rounded-[14%] bg-white border-2 border-paper text-paper select-none ${className}`}
+      style={{ boxShadow: `0 ${big ? 3 : 2}px 0 #121212` }}
     >
       <span className={`font-sans font-extrabold uppercase leading-none ${big ? "text-[clamp(1.6rem,9vw,2.6rem)]" : size === "slot" ? "text-[clamp(1.05rem,5.4vw,1.5rem)]" : "text-sm"}`}>
         {letter}
       </span>
       {size !== "chip" && (
-        <span className={`absolute font-mono font-semibold text-ink/60 ${big ? "right-[10%] bottom-[8%] text-xs" : "right-[8%] bottom-[4%] text-[9px]"}`}>{letterValue(letter)}</span>
+        <span className={`absolute font-mono font-semibold text-paper/55 ${big ? "right-[10%] bottom-[8%] text-xs" : "right-[8%] bottom-[4%] text-[9px]"}`}>{letterValue(letter)}</span>
       )}
     </span>
   );
@@ -55,7 +55,7 @@ export const WordSlots: React.FC<{ letters: string[]; shake: number; flash: bool
               {bonus && (
                 <span
                   className={`absolute -top-1.5 left-1/2 -translate-x-1/2 px-1 rounded text-[8px] font-mono font-bold leading-tight ${
-                    bonus === "letter" ? "bg-present text-ink" : "bg-correct text-paper"
+                    bonus === "letter" ? "bg-present text-ink" : "bg-correct text-white"
                   }`}
                 >
                   {bonus === "letter" ? "2×L" : "2×W"}

@@ -495,13 +495,13 @@ export const GamePage: React.FC = () => {
       <Rack tiles={game.tiles} version={game.version} disabled={modalOpen} onPick={game.pick} />
 
       <div className="grid grid-cols-3 gap-2.5 w-[min(78vw,19rem)]">
-        <button type="button" onClick={game.clear} disabled={modalOpen || game.picked.length === 0} aria-label="Clear" className="h-12 rounded-xl bg-danger/90 hover:bg-danger text-paper flex items-center justify-center transition-colors disabled:opacity-40">
+        <button type="button" onClick={game.clear} disabled={modalOpen || game.picked.length === 0} aria-label="Clear" className="h-12 rounded-xl bg-danger/90 hover:bg-danger text-white flex items-center justify-center transition-colors disabled:opacity-40">
           <X className="w-6 h-6" />
         </button>
         <button type="button" onClick={game.shuffle} disabled={modalOpen} aria-label="Shuffle" className="h-12 rounded-xl bg-present hover:bg-present-dim text-ink flex items-center justify-center transition-colors">
           <Shuffle className="w-6 h-6" />
         </button>
-        <button type="button" onClick={submitWord} disabled={modalOpen || game.picked.length < 3} aria-label="Play word" className="h-12 rounded-xl bg-correct hover:bg-correct-dim text-paper flex items-center justify-center transition-colors disabled:opacity-40">
+        <button type="button" onClick={submitWord} disabled={modalOpen || game.picked.length < 3} aria-label="Play word" className="h-12 rounded-xl bg-correct hover:bg-correct-dim text-white flex items-center justify-center transition-colors disabled:opacity-40">
           <Check className="w-6 h-6" />
         </button>
       </div>
@@ -509,7 +509,7 @@ export const GamePage: React.FC = () => {
       {stuck && (
         <div className="w-full max-w-[26rem] rounded-xl border border-present-dim/50 bg-present-soft px-4 py-3 text-sm text-center space-y-2" role="status">
           <p className="text-present">No more words can be made from this rack.</p>
-          <button type="button" onClick={() => finishGame(mode)} className="px-4 py-1.5 rounded-md bg-correct hover:bg-correct-dim text-paper text-sm font-medium">
+          <button type="button" onClick={() => finishGame(mode)} className="px-4 py-1.5 rounded-md bg-correct hover:bg-correct-dim text-white text-sm font-medium">
             Finish and see your score
           </button>
         </div>
@@ -563,7 +563,7 @@ export const GamePage: React.FC = () => {
             key={m}
             type="button"
             onClick={() => setMode(m)}
-            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${mode === m ? "bg-correct text-paper" : "text-muted hover:text-paper"}`}
+            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${mode === m ? "bg-correct text-white" : "text-muted hover:text-white"}`}
           >
             {m === "daily" ? `Daily No. ${puzzleNumber(today)}` : "Free play"}
             {m === "free" && !save.unlockedFree && <Lock className="w-3.5 h-3.5" />}
@@ -602,7 +602,7 @@ export const GamePage: React.FC = () => {
               streak={save.streak}
               footer={
                 <>
-                  <button type="button" onClick={handleShare} className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-paper font-medium text-sm transition-colors">
+                  <button type="button" onClick={handleShare} className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-white font-medium text-sm transition-colors">
                     {shareState === "copied" ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
                     {shareState === "copied" ? "Copied — paste it anywhere" : shareState === "failed" ? "Couldn't copy — try again" : "Share result"}
                   </button>
@@ -626,7 +626,7 @@ export const GamePage: React.FC = () => {
               <h2 className="font-display font-semibold text-lg">Free play</h2>
               <p className="text-sm text-muted mt-1.5">A fresh bag of 25 letters whenever you like, with three hints a game. The daily stays free forever.</p>
             </div>
-            <button type="button" onClick={handleUnlock} className="w-full py-2.5 px-4 rounded-md bg-correct hover:bg-correct-dim text-paper font-medium text-sm transition-colors">
+            <button type="button" onClick={handleUnlock} className="w-full py-2.5 px-4 rounded-md bg-correct hover:bg-correct-dim text-white font-medium text-sm transition-colors">
               Unlock free play for $2
             </button>
           </section>
@@ -642,7 +642,7 @@ export const GamePage: React.FC = () => {
               bag={fBag}
               streak={0}
               footer={
-                <button type="button" onClick={() => setSave(localSave.startFree(randomFreeSeed()))} className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-correct hover:bg-correct-dim text-paper font-medium transition-colors">
+                <button type="button" onClick={() => setSave(localSave.startFree(randomFreeSeed()))} className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-correct hover:bg-correct-dim text-white font-medium transition-colors">
                   <InfinityIcon className="w-4 h-4" />
                   New bag
                 </button>
@@ -652,7 +652,7 @@ export const GamePage: React.FC = () => {
             <section className="w-full bg-surface border border-rule rounded-xl p-6 text-center space-y-4 animate-rise-in">
               <h2 className="font-display font-semibold text-xl">Free play</h2>
               <p className="text-sm text-muted">A fresh bag of 25 letters every game.{save.bestFreeScore !== null ? ` Your best: ${save.bestFreeScore}.` : ""}</p>
-              <button type="button" onClick={() => setSave(localSave.startFree(randomFreeSeed()))} className="inline-flex items-center justify-center gap-2 w-full max-w-xs py-3 rounded-lg bg-correct hover:bg-correct-dim text-paper font-medium transition-colors">
+              <button type="button" onClick={() => setSave(localSave.startFree(randomFreeSeed()))} className="inline-flex items-center justify-center gap-2 w-full max-w-xs py-3 rounded-lg bg-correct hover:bg-correct-dim text-white font-medium transition-colors">
                 <InfinityIcon className="w-4 h-4" />
                 Open a bag
               </button>
@@ -716,7 +716,7 @@ const Rules: React.FC = () => (
 );
 
 const HelpModal: React.FC<{ onClose: () => void }> = ({ onClose }) => (
-  <div role="dialog" aria-modal="true" aria-label="How to play" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
+  <div role="dialog" aria-modal="true" aria-label="How to play" className="fixed inset-0 z-50 bg-white/75 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
     <div className="w-full max-w-md bg-surface border border-rule rounded-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
       <div className="flex items-center justify-between">
         <h2 className="font-display font-semibold text-lg">How to play</h2>
@@ -725,7 +725,7 @@ const HelpModal: React.FC<{ onClose: () => void }> = ({ onClose }) => (
         </button>
       </div>
       <Rules />
-      <button type="button" onClick={onClose} className="w-full py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-paper font-medium text-sm transition-colors">
+      <button type="button" onClick={onClose} className="w-full py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-white font-medium text-sm transition-colors">
         Let's play
       </button>
     </div>
@@ -733,7 +733,7 @@ const HelpModal: React.FC<{ onClose: () => void }> = ({ onClose }) => (
 );
 
 const ConfirmFinish: React.FC<{ lettersLeft: number; penalty: number; onCancel: () => void; onConfirm: () => void }> = ({ lettersLeft, penalty, onCancel, onConfirm }) => (
-  <div role="dialog" aria-modal="true" aria-label="Finish" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={onCancel}>
+  <div role="dialog" aria-modal="true" aria-label="Finish" className="fixed inset-0 z-50 bg-white/75 backdrop-blur-sm flex items-center justify-center p-4" onClick={onCancel}>
     <div className="w-full max-w-sm bg-surface border border-rule rounded-2xl p-6 space-y-4 text-center" onClick={(e) => e.stopPropagation()}>
       <h2 className="font-display font-semibold text-lg">Finish now?</h2>
       <p className="text-sm text-muted">
@@ -749,7 +749,7 @@ const ConfirmFinish: React.FC<{ lettersLeft: number; penalty: number; onCancel: 
         <button type="button" onClick={onCancel} className="py-2.5 rounded-lg border border-rule text-sm text-paper/90 hover:border-muted/60 transition-colors">
           Keep playing
         </button>
-        <button type="button" onClick={onConfirm} className="py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-paper font-medium text-sm transition-colors">
+        <button type="button" onClick={onConfirm} className="py-2.5 rounded-lg bg-correct hover:bg-correct-dim text-white font-medium text-sm transition-colors">
           Finish
         </button>
       </div>
