@@ -213,6 +213,7 @@ export const GamePage: React.FC = () => {
   const submitDaily = useCallback(
     (final: FinalScore, words: number) => {
       setScoreStatus("saving");
+      window.dispatchEvent(new CustomEvent("bgw:finished", { detail: { game: "letterezy" } })); // BGameWorld: suggest next games
       submitScore({ puzzleDate: today, score: final.total, words, lettersUsed: final.lettersUsed, target: bag.target })
         .then(() => {
           setScoreStatus("saved");
@@ -255,7 +256,7 @@ export const GamePage: React.FC = () => {
         resubmitToday();
       }
       refreshStats();
-      const choiceDone = typeof window !== "undefined" && sessionStorage.getItem(PLAY_CHOICE_KEY) === "true";
+      const choiceDone = true; // BGameWorld asks new players once, for every game (bgameworld.com/account.js)
       setPhase(!anon || choiceDone || name || quiet ? "ready" : "choice");
     } catch (err) {
       console.error("Failed to establish session:", err);
